@@ -1,19 +1,4 @@
 # app.py
-from flask import Flask, request, jsonify
-from model import MLModel
-
-app = Flask(__name__)
-model = MLModel()
-
-@app.route('/predict', methods=['POST'])
-def predict():
-   data = request.json['data']
-   prediction = model.predict([data])
-   return jsonify({'prediction': prediction.tolist()})
-
-if __name__ == '__main__':
-   app.run(debug=True, port=50000)
-""
 import streamlit as st
 import pandas as pd
 from sklearn.datasets import load_iris
@@ -35,9 +20,9 @@ clf.fit(X_train, y_train.values.ravel())
 # Streamlit app
 st.title("Iris Flower Species Classification")
 
-st.write(""
+st.write("""
 This app uses a RandomForestClassifier to classify Iris flower species based on their features.
-"")
+""")
 
 # Sidebar for user input
 st.sidebar.header('User Input Features')
